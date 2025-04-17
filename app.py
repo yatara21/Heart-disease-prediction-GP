@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Load model and features
 try:
-    model = joblib.load("heart_disease_rf_model(1).pkl")
+    model = joblib.load("heart_disease_rf_model.pkl")
     feature_order = joblib.load("model_features.pkl")
 except Exception as e:
     print(f"Error loading model files: {e}")
