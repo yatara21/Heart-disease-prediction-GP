@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Risk Assessment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <header class="mb-12 relative">
+      <div class="flex items-center justify-between">
+        <img src="{{ url_for('static', filename='eelu.jpg') }}" alt="EELU Logo" class="h-24 rounded-[50px] -ml-6">
+        <div class="text-center flex-1">
+          <h1 class="text-3xl font-semibold text-blue-700 mb-2">Heart Disease Risk Assessment</h1>
+          <p class="text-gray-600">Egyptian E-Learning University (EELU)</p>
+        </div>
+      </div>
+    </header>
+
+    <form method="POST" class="bg-white rounded-xl shadow-lg p-8">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div
+        class="mb-6 p-4 rounded-lg {% if category == 'success' %}bg-green-100 border border-green-200 text-green-700{% else %}bg-red-100 border border-red-200 text-red-700{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <div class="grid grid-cols-2 gap-x-12 gap-y-6">
+        <div class="space-y-6">
+          <!-- Left Column - Numeric Inputs -->
+          <div class="form-group">
+            <label for="age" class="block text-gray-700 font-bold mb-2 text-lg">Age</label>
+            <input type="number" id="age" name="Age" placeholder="e.g., 45" required min="28" max="77"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+          </div>
+
+          <div class="form-group">
+            <label for="restingBP" class="block text-gray-700 font-bold mb-2 text-lg">Resting Blood Pressure</label>
+            <input type="number" id="restingBP" name="RestingBP" placeholder="e.g., 120" required min="80" max="200"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+          </div>
+
+          <div class="form-group">
+            <label for="cholesterol" class="block text-gray-700 font-bold mb-2 text-lg">Cholesterol</label>
+            <input type="number" id="cholesterol" name="Cholesterol" placeholder="e.g., 200" required min="0" max="603"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+          </div>
+
+          <div class="form-group">
+            <label for="maxHR" class="block text-gray-700 font-bold mb-2 text-lg">Maximum Heart Rate</label>
+            <input type="number" id="maxHR" name="MaxHR" placeholder="e.g., 150" required min="60" max="202"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+          </div>
+
+          <div class="form-group">
+            <label for="oldpeak" class="block text-gray-700 font-bold mb-2 text-lg">ST Depression</label>
+            <input type="number" id="oldpeak" step="0.1" name="Oldpeak" placeholder="e.g., 1.0" required min="-2.6"
+              max="6.2"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Right Column - Dropdowns -->
+          <div class="form-group">
+            <label for="sex" class="block text-gray-700 font-bold mb-2 text-lg">Gender</label>
+            <select id="sex" name="Sex_M" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select gender</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="chestPain" class="block text-gray-700 font-bold mb-2 text-lg">Chest Pain Type</label>
+            <select id="chestPain" name="ChestPainType" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select type</option>
+              <option value="TA">Typical Angina</option>
+              <option value="ATA">Atypical Angina</option>
+              <option value="NAP">Non-anginal Pain</option>
+              <option value="ASY">Asymptomatic</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="restingECG" class="block text-gray-700 font-bold mb-2 text-lg">Resting ECG</label>
+            <select id="restingECG" name="RestingECG" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select value</option>
+              <option value="Normal">Normal</option>
+              <option value="ST">ST</option>
+              <option value="LVH">LVH</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fastingBS" class="block text-gray-700 font-bold mb-2 text-lg">Fasting Blood Sugar</label>
+            <select id="fastingBS" name="FastingBS" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select value</option>
+              <option value="1">Yes (> 120 mg/dl)</option>
+              <option value="0">No (≤ 120 mg/dl)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exerciseAngina" class="block text-gray-700 font-bold mb-2 text-lg">Exercise-Induced
+              Angina</label>
+            <select id="exerciseAngina" name="ExerciseAngina_Y" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select value</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="stSlope" class="block text-gray-700 font-bold mb-2 text-lg">ST Slope</label>
+            <select id="stSlope" name="ST_Slope" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all appearance-none bg-white">
+              <option value="">Select value</option>
+              <option value="Up">Up</option>
+              <option value="Flat">Flat</option>
+              <option value="Down">Down</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button type="submit"
+          class="bg-blue-700 text-white px-12 py-3 rounded-lg font-semibold text-lg hover:bg-blue-800 transform hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Assess Risk
+        </button>
+      </div>
+    </form>
+
+    <footer class="mt-8 text-center text-gray-600 text-sm py-4 border-t">
+      <p>&copy; 2025 EELU-Graduation-Project - Egyptian E-Learning University. All rights reserved.</p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
