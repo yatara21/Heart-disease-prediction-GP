@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+*.log
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Project specific
+logs/
+.coverage
+.pytest_cache/
+
+# OS specific
+.DS_Store
+Thumbs.db
