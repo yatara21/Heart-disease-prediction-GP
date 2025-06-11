@@ -44,7 +44,7 @@ This application leverages machine learning to predict heart disease risk based 
 ## ✨ Key Features
 - **Real-time Predictions**: Instant heart disease risk assessment
 - **User-friendly Interface**: Clean, responsive design with input validation
-- **High Accuracy**: 88.04% prediction accuracy
+- **High Accuracy**: 91.1% prediction accuracy
 - **Confidence Levels**: Detailed prediction confidence metrics
 - **Deployment Ready**: Docker support for easy deployment
 - **Cloud Compatible**: Azure deployment configuration included
