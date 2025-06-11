@@ -147,9 +147,57 @@ docker push YOUR_REGISTRY_NAME.azurecr.io/heart-disease-prediction:latest
 3. Click "Assess Risk"
 4. View prediction results and confidence level
 
-## 👥 Contributors
-- **Lead Developer**: [Khalid Elshawadfy](https://github.com/yatara21)
+🌐 Web Application
 
+    🔗 Live Demo: http://eelu-demo-app.westeurope.azurecontainer.io
+
+Users can enter patient data through an intuitive form and receive an instant prediction of heart disease presence or absence.
+
+🧩 Challenges
+
+    Data Quality: Cleaned invalid values (e.g., zero cholesterol)
+
+    Model Interpretability: Balanced accuracy vs. explainability
+
+    Deployment Compatibility: Resolved environment issues with Docker
+
+    Web Input Matching: Handled Flask form reshaping for model prediction
+
+🚧 Limitations & Future Work
+
+    Use larger, more diverse datasets
+
+    Incorporate lifestyle and genetic data
+
+    Integrate model into hospital EHR systems
+
+    Implement SHAP/LIME for interpretability
+
+    Develop a mobile-friendly version
+
+    Validate in clinical trials
+    
+👨‍💻 Contributors
+
+    Khalid Elshawadfy Ahmed
+
+    Ammar Mohamed Hassan
+
+    Abdullah Ahmed Abdellazim
+
+    Hossam Hassan Mohamed
+
+    Mohamed Elsayed Abdelsamad
+
+    Omar Abdelrhaman Yousef
+
+Supervised by:
+
+    Prof. Ahmed Ezz (RIP)
+
+    Dr. Yasmin Mahmoud
+
+    Eng. Nourhan Salah
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
