@@ -107,12 +107,15 @@ python app.py
 | ST_Slope | Categorical | Up/Flat/Down | Slope of peak exercise ST segment |
 
 ### Model Performance
-| Model | Accuracy | Precision | Recall | F1-Score |
-|-------|----------|-----------|---------|-----------|
-| Random Forest | 88.04% | 89% | 88% | 88% |
-| Logistic Regression | 85.87% | 86% | 86% | 86% |
-| SVM (RBF) | 74.46% | 75% | 74% | 74% |
-| MLP Classifier | 85.33% | 86% | 85% | 85% |
+
+| Model               | Accuracy | F1-Score | ROC-AUC  |
+| ------------------- | -------- | -------- | -------- |
+| Random Forest       | 90.1%    | 90%      | High     |
+| Logistic Regression | \~90.22%    | \~85%    | High     |
+| SVM                 | \~68.48%    | \~83%    | Low |
+| MLP (ANN)           | 83.7.2%    | 87%      | Good     |
+
+🔍 Random Forest was selected for deployment due to its high accuracy and interpretability.
 
 ***NOTE***: The model performance numbers may differ every time you train your models
 
